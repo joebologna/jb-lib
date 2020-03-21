@@ -1,0 +1,9 @@
+{
+  "type": "module",
+  "dependencies": {
+    "hello": "./hello"
+  },
+  "scripts": {
+    "test": "node test.js"
+  }
+}
