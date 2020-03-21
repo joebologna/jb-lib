@@ -1,8 +1,10 @@
 {
+  "name": "jb-lib",
+  "version": "1.0.0",
+  "description": "JavaScript utils",
   "type": "module",
-  "dependencies": {
-    "hello": "./hello"
-  },
+  "main": "index.js",
+  "dependencies": {},
   "scripts": {
     "test": "node test.js"
   }
