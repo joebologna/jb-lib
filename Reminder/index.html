@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    .demo_msg {color:'red'}
+    </style>
+    <script src="lib.js"></script>
+
+    <script>
+    window.addEventListener('load', (event) => {
+        showMsg('demo', [
+            'Please remember to cancel StichFix.',
+            '',
+            'Thank You!',
+            'Love, Joe'
+        ]);
+    });
+    </script>
+    <body style="background:black; ">
+        <h1 style="color:white">Urgent:</h1>
+        <h2 style="color:white">Message for Patty Cakes</h1>
+        <!-- <button onclick="typeWriter()">Click me</button> -->
+        <p id="demo" style="color:salmon; font-size: large;"></p>
+    </body>
+</html>
