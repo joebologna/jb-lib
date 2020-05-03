@@ -1,73 +1,22 @@
 <!DOCTYPE html>
 <html>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    html {
-      height: 400px;
-    }
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: black;
-      color: white;
-      font-size: 40pt;
-    }
-    button {
-      font-size: 20pt;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 40;
-    }
-    #pw {
-      visibility: hidden;
-    }
-  </style>
+  <link href="genpw.css" rel="stylesheet" />
+  <script src="genpw.js"></script>
   <body>
-    <div>
-      <button type="button" onclick="showPW()">Click Me!</button>
+    <div class="center">
+      <input
+        id="encode"
+        value=""
+        onclick="this.setSelectionRange(0, this.value.length)"
+      />
+      <button onclick="showPW()">Click Me!</button>
+      <div id="pw">&nbsp;</div>
     </div>
-    <div id="pw" />
     <script>
-      var alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-      var rot13table = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
-
-      function getShortMonth() {
-        return new Intl.DateTimeFormat("en-US", { month: "short" }).format(
-          Date.now()
-        );
-      }
-
-      function encodeRot13(line) {
-        var encoded = "";
-        for (var c of line) {
-          var i = alpha.indexOf(c);
-          var rot;
-          if (i < 0) rot = c;
-          else rot = rot13table[i];
-          encoded += rot;
-        }
-        return encoded;
-      }
-
-      function genTodaysPassword() {
-        return getShortMonth() + "Day" + new Date().getFullYear() + "!";
-      }
-
-      function showPW() {
-        var pw = document.getElementById("pw");
-        var toEncode = genTodaysPassword();
-        document.title = toEncode;
-        pw.innerHTML = encodeRot13(toEncode);
-        pw.style.visibility = "visible";
-        setTimeout(() => {
-          pw.style.visibility = "hidden";
-          pw.innerHTML = "";
-        }, 5000);
-      }
-
-      //showPW();
+      var encode = document.getElementById("encode");
+      encode.value = genTodaysPassword();
+      document.getElementById("encode").addEventListener("keyup", updatePW);
     </script>
   </body>
 </html>
