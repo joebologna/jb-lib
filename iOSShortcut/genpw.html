@@ -1,64 +1,73 @@
 <!DOCTYPE html>
 <html>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-html {
-height:400px
-}
-body {
-display: flex;
-justify-content: center;
-align-items: center;
-background-color: black;
-color: white;
-font-size: 40pt;
-}
-button {
-font-size: 40pt;
-}
-</style>
-<body>
-<button type="button" onclick="showpw()">Click Me!</button>
-<div id=pw />
-<script>
-var alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-var rot13table = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    html {
+      height: 400px;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: black;
+      color: white;
+      font-size: 40pt;
+    }
+    button {
+      font-size: 20pt;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40;
+    }
+    #pw {
+      visibility: hidden;
+    }
+  </style>
+  <body>
+    <div>
+      <button type="button" onclick="showPW()">Click Me!</button>
+    </div>
+    <div id="pw" />
+    <script>
+      var alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+      var rot13table = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
-function getShortMonth() {
-  return new Intl.DateTimeFormat("en-US", { month: "short" }).format(
-      Date.now()
-      );
-}
+      function getShortMonth() {
+        return new Intl.DateTimeFormat("en-US", { month: "short" }).format(
+          Date.now()
+        );
+      }
 
-function encodeRot13(line) {
-  var encoded = "";
-  for (var c of line) {
-    var i = alpha.indexOf(c);
-    var rot;
-    if (i < 0) rot = c;
-    else rot = rot13table[i];
-    encoded += rot;
-  }
-  return encoded;
-}
+      function encodeRot13(line) {
+        var encoded = "";
+        for (var c of line) {
+          var i = alpha.indexOf(c);
+          var rot;
+          if (i < 0) rot = c;
+          else rot = rot13table[i];
+          encoded += rot;
+        }
+        return encoded;
+      }
 
-function genTodaysPassword() {
-  return getShortMonth() + new Date().getFullYear() + "!";
-}
+      function genTodaysPassword() {
+        return getShortMonth() + "Day" + new Date().getFullYear() + "!";
+      }
 
-function showpw() {
-var toEncode = genTodaysPassword();
-document.title = toEncode;
-alert(encodeRot13(toEncode));
-}
+      function showPW() {
+        var pw = document.getElementById("pw");
+        var toEncode = genTodaysPassword();
+        document.title = toEncode;
+        pw.innerHTML = encodeRot13(toEncode);
+        pw.style.visibility = "visible";
+        setTimeout(() => {
+          pw.style.visibility = "hidden";
+          pw.innerHTML = "";
+        }, 5000);
+      }
 
-/*
-var pw = document.getElementById("pw");
-var toEncode = genTodaysPassword();
-document.title = toEncode;
-pw.innerHTML = encodeRot13(toEncode);
-*/
-
-</script>
-</body>
+      //showPW();
+    </script>
+  </body>
 </html>
