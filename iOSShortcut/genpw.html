@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<div id=pw style="font-size:large" />
+<script>
+var alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+var rot13table = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+
+function getShortMonth() {
+  return new Intl.DateTimeFormat("en-US", { month: "short" }).format(
+      Date.now()
+      );
+}
+
+function encodeRot13(line) {
+  var encoded = "";
+  for (var c of line) {
+    var i = alpha.indexOf(c);
+    var rot;
+    if (i < 0) rot = c;
+    else rot = rot13table[i];
+    encoded += rot;
+  }
+  return encoded;
+}
+
+function genTodaysPassword() {
+  return getShortMonth() + new Date().getFullYear() + "!";
+}
+
+var pw = document.getElementById("pw");
+var toEncode = genTodaysPassword();
+document.title = toEncode;
+pw.innerHTML = encodeRot13(toEncode);
+
+</script>
+</html>
