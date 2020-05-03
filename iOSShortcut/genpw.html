@@ -1,7 +1,25 @@
 <!DOCTYPE html>
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<div id=pw style="font-size:large" />
+<style>
+html {
+height:400px
+}
+body {
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: black;
+color: white;
+font-size: 40pt;
+}
+button {
+font-size: 40pt;
+}
+</style>
+<body>
+<button type="button" onclick="showpw()">Click Me!</button>
+<div id=pw />
 <script>
 var alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 var rot13table = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
@@ -28,10 +46,19 @@ function genTodaysPassword() {
   return getShortMonth() + new Date().getFullYear() + "!";
 }
 
+function showpw() {
+var toEncode = genTodaysPassword();
+document.title = toEncode;
+alert(encodeRot13(toEncode));
+}
+
+/*
 var pw = document.getElementById("pw");
 var toEncode = genTodaysPassword();
 document.title = toEncode;
 pw.innerHTML = encodeRot13(toEncode);
+*/
 
 </script>
+</body>
 </html>
