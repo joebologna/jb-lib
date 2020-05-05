@@ -22,7 +22,7 @@ function encodeRot13(line) {
 }
 
 function genTodaysPassword() {
-  return encodeRot13(getShortMonth()) + getShortMonth() + new Date().getFullYear() + "!";
+  return `${encodeRot13(getShortMonth())}(${getShortMonth()})${new Date().getFullYear()}!`
 }
 
 function updatePW(event) {
